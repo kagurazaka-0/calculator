@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import React from "react"
 import { Calculator } from "./components/Calculator"
+import { ChakraProvider } from "@chakra-ui/react"
 
 // thanks! iPhoneのheight問題について→ https://zenn.dev/tak_dcxi/articles/2ac77656aa94c2cd40bf
 const Container = styled.div<{ isIPhone?: boolean }>`
@@ -14,8 +15,10 @@ const Container = styled.div<{ isIPhone?: boolean }>`
 
 export const App: React.VFC = () => {
   return (
-    <Container>
-      <Calculator />
-    </Container>
+    <ChakraProvider>
+      <Container>
+        <Calculator />
+      </Container>
+    </ChakraProvider>
   )
 }
