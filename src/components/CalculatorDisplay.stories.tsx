@@ -8,4 +8,4 @@ export default {
   component: CalculatorDisplay,
 } as Meta
 
-export const Default: Story = () => <CalculatorDisplay text="0.1" />
+export const Default: Story = () => <CalculatorDisplay operatorText="+" text="0.1" />
