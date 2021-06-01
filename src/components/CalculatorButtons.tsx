@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 320px;
   height: 280px;
   /*dev */
-  background-color: black;
+  background-color: #474747;
 
   display: grid;
   gap: 1px;
@@ -94,11 +94,11 @@ export const CalculatorButtons: React.VFC<Props> = props => {
         </Row>
       </Bottom>
       <Right>
-        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="÷" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="×" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="-" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="+" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="=" onClick={props.onOperatorClick} />
+        <CalculatorButton color="white" fontSize="28px" bgColor="#FE9F10" text="÷" onClick={props.onOperatorClick} />
+        <CalculatorButton color="white" fontSize="28px" bgColor="#FE9F10" text="×" onClick={props.onOperatorClick} />
+        <CalculatorButton color="white" fontSize="28px" bgColor="#FE9F10" text="-" onClick={props.onOperatorClick} />
+        <CalculatorButton color="white" fontSize="28px" bgColor="#FE9F10" text="+" onClick={props.onOperatorClick} />
+        <CalculatorButton color="white" fontSize="28px" bgColor="#FE9F10" text="=" onClick={props.onOperatorClick} />
       </Right>
     </Container>
   )

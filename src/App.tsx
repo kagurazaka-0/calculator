@@ -1,36 +1,21 @@
-import React, { useState } from "react"
-import "./App.css"
+import styled from "@emotion/styled"
+import React from "react"
+import { Calculator } from "./components/Calculator"
 
-function App() {
-  const [count, setCount] = useState(0)
+// thanks! iPhoneのheight問題について→ https://zenn.dev/tak_dcxi/articles/2ac77656aa94c2cd40bf
+const Container = styled.div<{ isIPhone?: boolean }>`
+  width: 100vw;
+  height: ${({ isIPhone }) => (isIPhone ? "-webkit-fill-available" : "100vh")};
 
+  background-color: #313131;
+  display: grid;
+  place-items: center;
+`
+
+export const App: React.VFC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>count is: {count}</button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Container>
+      <Calculator />
+    </Container>
   )
 }
-
-export default App
