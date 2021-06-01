@@ -5,7 +5,7 @@ import { CalculatorButton } from "./CalculatorButton"
 
 const Container = styled.div`
   width: 320px;
-  height: 200px;
+  height: 280px;
   /*dev */
   background-color: black;
 
@@ -64,41 +64,41 @@ export const CalculatorButtons: React.VFC<Props> = props => {
       <Top>
         <CalculatorButton
           color="white"
-          fontSize="16px"
+          fontSize="20px"
           bgColor="#424446"
           text={0 ? "AC" : "C"}
           onClick={props.onOtherClick}
         />
-        <CalculatorButton color="white" fontSize="16px" bgColor="#424446" text="+/-" onClick={props.onOtherClick} />
-        <CalculatorButton color="white" fontSize="16px" bgColor="#424446" text="%" onClick={props.onOtherClick} />
+        <CalculatorButton color="white" fontSize="20px" bgColor="#424446" text="+/-" onClick={props.onOtherClick} />
+        <CalculatorButton color="white" fontSize="20px" bgColor="#424446" text="%" onClick={props.onOtherClick} />
       </Top>
       <Bottom>
         <Row>
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="7" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="8" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="9" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="7" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="8" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="9" onClick={props.onNumberClick} />
         </Row>
         <Row>
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="4" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="5" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="6" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="4" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="5" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="6" onClick={props.onNumberClick} />
         </Row>
         <Row>
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="1" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="2" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="3" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="1" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="2" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="3" onClick={props.onNumberClick} />
         </Row>
         <Row>
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="0" onClick={props.onNumberClick} />
-          <CalculatorButton color="white" fontSize="24px" bgColor="#7E7E7E" text="." onClick={props.onOtherClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="0" onClick={props.onNumberClick} />
+          <CalculatorButton color="white" fontSize="32px" bgColor="#7E7E7E" text="." onClick={props.onOtherClick} />
         </Row>
       </Bottom>
       <Right>
-        <CalculatorButton fontSize="20px" bgColor="#FE9F10" text="÷" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="20px" bgColor="#FE9F10" text="×" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="20px" bgColor="#FE9F10" text="-" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="20px" bgColor="#FE9F10" text="+" onClick={props.onOperatorClick} />
-        <CalculatorButton fontSize="20px" bgColor="#FE9F10" text="=" onClick={props.onOperatorClick} />
+        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="÷" onClick={props.onOperatorClick} />
+        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="×" onClick={props.onOperatorClick} />
+        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="-" onClick={props.onOperatorClick} />
+        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="+" onClick={props.onOperatorClick} />
+        <CalculatorButton fontSize="28px" bgColor="#FE9F10" text="=" onClick={props.onOperatorClick} />
       </Right>
     </Container>
   )
