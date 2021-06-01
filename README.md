@@ -1,6 +1,9 @@
 # calculator
 
-node v15.10.0で動作しています
+https://katsuyau.github.io/calculator/
+
+
+※ node v15.10.0で動作しています
 
 ## How to run
 1. 初回時のみ `npm i`を実行
