@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { Calc } from "calc-js"
 import React, { useCallback, useMemo, useState } from "react"
+import { useCalculator } from "../hooks/useCalculator"
 import { throwInvalidStateError } from "../utils"
 import { CalculatorButtons, CalculatorButtonsProps } from "./CalculatorButtons"
 import { CalculatorDisplay } from "./CalculatorDisplay"
@@ -35,6 +36,7 @@ const toDivide100 = (numberString: string): string => {
 }
 
 export const Calculator: React.VFC = () => {
+  const { firstNumber, setFirstNumber, calcType, setCalcType, execute } = useCalculator()
   const [input, setInput] = useState("0")
   // const [isAfterClickedOperator, setIsAfterClickedOperator] = useState(false)
   const [maybeOperator, setMaybeOperator] = useState<Operator>()
@@ -44,6 +46,7 @@ export const Calculator: React.VFC = () => {
   //   }
   //   return false
   // }, [])
+
   const onOperatorClick = useCallback<OnOperatorClick>(operator => {
     if (operator === "=") {
       // TODO: firstの時は何もしない
