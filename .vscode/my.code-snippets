@@ -14,7 +14,7 @@
       "  component: $1,",
       "} as Meta;",
       "",
-      "const Default: Story = () => <$1  />;",
+      "export const Default: Story = () => <$1  />;",
     ]
   }
 }
