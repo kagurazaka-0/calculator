@@ -1,0 +1,20 @@
+{
+  "Initialize for stories file": {
+    "scope": "typescriptreact",
+    "prefix": "_sb",
+    "description": "Initialize for stories file.",
+    "body": [
+      "import React from \"react\";",
+      "import { Story, Meta } from \"@storybook/react\";",
+      "",
+      "import { $1 } from \"./$1\";",
+      "",
+      "export default {",
+      "  title: \"$1\",",
+      "  component: $1,",
+      "} as Meta;",
+      "",
+      "const Default: Story = () => <$1  />;",
+    ]
+  }
+}
