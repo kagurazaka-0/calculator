@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { useMemo } from "react"
 import { Calculator } from "./Calculator"
 
 // thanks! iPhoneのheight問題について→ https://zenn.dev/tak_dcxi/articles/2ac77656aa94c2cd40bf
@@ -13,8 +13,9 @@ const Container = styled.div<{ isIPhone?: boolean }>`
 `
 
 export const Main: React.VFC = () => {
+  const isIPhone = useMemo((): boolean => navigator.userAgent.includes("iPhone"), [])
   return (
-    <Container>
+    <Container isIPhone={isIPhone}>
       <Calculator />
     </Container>
   )
