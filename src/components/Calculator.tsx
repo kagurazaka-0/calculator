@@ -15,6 +15,7 @@ const Container = styled.div`
   user-select: none;
 `
 
+// TODO: Operatorをどこかに定義
 type Operator = "÷" | "×" | "-" | "+"
 
 type OnOperatorClick = NonNullable<CalculatorButtonsProps["onOperatorClick"]>
@@ -35,83 +36,116 @@ const toDivide100 = (numberString: string): string => {
   return String(result)
 }
 
-export const Calculator: React.VFC = () => {
-  const { firstNumber, setFirstNumber, calcType, setCalcType, execute } = useCalculator()
-  const [input, setInput] = useState("0")
-  // const [isAfterClickedOperator, setIsAfterClickedOperator] = useState(false)
-  const [maybeOperator, setMaybeOperator] = useState<Operator>()
-  // const l = useMemo((): boolean => {
-  //   if (maybeOperator) {
-  //     return true
-  //   }
-  //   return false
-  // }, [])
+const removeEndWithDot = (numberString: string): string => {
+  return numberString.endsWith(".") ? numberString.replace(".", "") : numberString
+}
 
-  const onOperatorClick = useCallback<OnOperatorClick>(operator => {
-    if (operator === "=") {
-      // TODO: firstの時は何もしない
-      return
+export const Calculator: React.VFC = () => {
+  const [input, setInput] = useState("0")
+  const [maybeOperator, setMaybeOperator] = useState<Operator>()
+  const [maybeResult, setMaybeResult] = useState<number>()
+  const { firstNumber, setFirstNumber, execute } = useCalculator(maybeOperator)
+
+  const isAfterClickedOperator = useMemo(() => maybeOperator && input === "0", [input, maybeOperator])
+  const isC = useMemo(
+    () => input !== "0" || maybeResult != null || !!maybeOperator,
+    [input, maybeResult, maybeOperator]
+  )
+
+  const displayText = useMemo((): string => {
+    if (maybeResult) {
+      return String(maybeResult)
+    }
+    if (isAfterClickedOperator) {
+      return String(firstNumber)
+    }
+    return input
+  }, [maybeResult, input, isAfterClickedOperator, firstNumber])
+
+  const onOperatorClick = useCallback<OnOperatorClick>(
+    operator => {
+      if (operator !== "=") {
+        const n = maybeResult ? maybeResult : Number(removeEndWithDot(input))
+        if (maybeResult) {
+          setMaybeResult(undefined)
+        }
+        setFirstNumber(n)
+        setMaybeOperator(operator)
+        setInput("0")
+        return
+      }
+
+      if (!maybeOperator) return
+      setMaybeOperator(undefined)
+
+      const n = Number(removeEndWithDot(input))
+      const result = execute(n)
+      setMaybeResult(result)
+      setInput("0")
+    },
+    [input, maybeResult]
+  )
+
+  const onOtherClick = useCallback<OnOtherClick>(text => {
+    setMaybeResult(undefined)
+    switch (text) {
+      case "AC": {
+        setInput("0")
+        return
+      }
+      case "C": {
+        setInput("0")
+        setMaybeOperator(undefined)
+        setFirstNumber(0)
+        return
+      }
+      case "+/-": {
+        setInput(_it => {
+          const it = removeEndWithDot(_it)
+          if (it === "0") return it
+          return togglePlusMinus(it)
+        })
+        return
+      }
+      case "%": {
+        setInput(_it => {
+          const it = removeEndWithDot(_it)
+          return toDivide100(it)
+        })
+        return
+      }
+      case ".": {
+        setInput(it => {
+          if (it.includes(".")) return it
+          return `${it}.`
+        })
+        return
+      }
+      default:
+        throwInvalidStateError(text)
     }
   }, [])
-  const onOtherClick = useCallback<OnOtherClick>(
-    text => {
-      switch (text) {
-        case "AC": {
-          setInput("0")
-          setMaybeOperator(undefined)
-          return
-        }
-        case "C": {
-          return
-        }
-        case "+/-": {
-          setInput(_it => {
-            const it = _it.endsWith(".") ? _it.replace(".", "") : _it
-            return togglePlusMinus(it)
-          })
-          return
-        }
-        case "%": {
-          setInput(_it => {
-            const it = _it.endsWith(".") ? _it.replace(".", "") : _it
-            return toDivide100(it)
-          })
-          return
-        }
-        case ".": {
-          setInput(it => {
-            if (it.includes(".")) {
-              return it
-            }
-            return `${it}.`
-          })
-          return
-        }
-        default:
-          throwInvalidStateError(text)
-      }
-    },
-    [input, maybeOperator]
-  )
+
   const onNumberClick = useCallback<OnNumberClick>(
     numberText => {
+      if (maybeResult) {
+        setMaybeResult(undefined)
+      }
       if (input === "0") {
-        if (numberText === "0") {
-          return
-        }
+        if (numberText === "0") return
         setInput(numberText)
         return
       }
       setInput(it => `${it}${numberText}`)
     },
-    [input]
+    [input, maybeResult]
   )
 
-  const calculatorButtonsProps = { onOperatorClick, onOtherClick, onNumberClick }
+  const calculatorButtonsProps = { isC, onOperatorClick, onOtherClick, onNumberClick }
 
   return (
     <Container>
-      <CalculatorDisplay text={input} />
+      <CalculatorDisplay operatorText={maybeOperator} text={displayText} />
       <CalculatorButtons {...calculatorButtonsProps} />
     </Container>
   )
