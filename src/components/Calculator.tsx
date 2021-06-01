@@ -87,6 +87,8 @@ export const Calculator: React.VFC = () => {
     switch (text) {
       case "AC": {
         setInput("0")
+        setMaybeOperator(undefined)
+        setFirstNumber(0)
         return
       }
       case "C": {
