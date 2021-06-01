@@ -13,7 +13,15 @@ interface CalculatorButtonProps<Word extends string> extends ChakraProps {
 export const CalculatorButton = <Operator extends string>(props: CalculatorButtonProps<Operator>) => {
   const { text, onClick, ...chakraProps } = props
   return (
-    <Button {...chakraProps} m={0} w="100%" h="100%" border="none" onClick={() => onClick?.(text)}>
+    <Button
+      {...chakraProps}
+      w="100%"
+      h="100%"
+      border="none"
+      rounded={0}
+      _focus={undefined}
+      onClick={() => onClick?.(text)}
+    >
       {text}
     </Button>
   )
