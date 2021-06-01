@@ -4,7 +4,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "serve": "vite preview",
     "storybook": "start-storybook -p 6006 --ci",
     "sb": "npm run storybook",
