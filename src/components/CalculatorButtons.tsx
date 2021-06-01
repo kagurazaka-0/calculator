@@ -52,13 +52,14 @@ const Row = styled.div`
   display: flex;
 `
 
-interface Props {
+export interface CalculatorButtonsProps {
+  isC?: boolean
   onOperatorClick?: (operator: "÷" | "×" | "-" | "+" | "=") => void
   onOtherClick?: (text: "AC" | "C" | "+/-" | "%" | ".") => void
   onNumberClick?: (numberText: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") => void
 }
 
-export const CalculatorButtons: React.VFC<Props> = props => {
+export const CalculatorButtons: React.VFC<CalculatorButtonsProps> = props => {
   return (
     <Container>
       <Top>
@@ -66,7 +67,7 @@ export const CalculatorButtons: React.VFC<Props> = props => {
           color="white"
           fontSize="20px"
           bgColor="#424446"
-          text={0 ? "AC" : "C"}
+          text={props.isC ? "C" : "AC"}
           onClick={props.onOtherClick}
         />
         <CalculatorButton color="white" fontSize="20px" bgColor="#424446" text="+/-" onClick={props.onOtherClick} />
