@@ -47,10 +47,6 @@ export const Calculator: React.VFC = () => {
   const { firstNumber, setFirstNumber, execute } = useCalculator(maybeOperator)
 
   const isAfterClickedOperator = useMemo(() => maybeOperator && input === "0", [input, maybeOperator])
-  const isC = useMemo(
-    () => input !== "0" || maybeResult != null || !!maybeOperator,
-    [input, maybeResult, maybeOperator]
-  )
 
   const displayText = useMemo((): string => {
     if (maybeResult) {
@@ -141,7 +137,7 @@ export const Calculator: React.VFC = () => {
     [input, maybeResult]
   )
 
-  const calculatorButtonsProps = { isC, onOperatorClick, onOtherClick, onNumberClick }
+  const calculatorButtonsProps = { onOperatorClick, onOtherClick, onNumberClick }
 
   return (
     <Container>
