@@ -1,19 +1,11 @@
-import styled from "@emotion/styled"
+import { Box } from "@chakra-ui/react"
 import { Calc } from "calc-js"
 import React, { useCallback, useMemo, useState } from "react"
+
 import { useCalculator } from "../hooks/useCalculator"
 import { throwInvalidStateError } from "../utils"
 import { CalculatorButtons, CalculatorButtonsProps } from "./CalculatorButtons"
 import { CalculatorDisplay } from "./CalculatorDisplay"
-
-const Container = styled.div`
-  width: 320px;
-  border: 1px solid black;
-  border-radius: 7px;
-  box-shadow: 0 0 7px 7px #7a7a7a;
-  overflow: hidden;
-  user-select: none;
-`
 
 // TODO: Operatorをどこかに定義
 type Operator = "÷" | "×" | "-" | "+"
@@ -59,7 +51,7 @@ export const Calculator: React.VFC = () => {
   }, [maybeResult, input, isAfterClickedOperator, firstNumber])
 
   const onOperatorClick = useCallback<OnOperatorClick>(
-    operator => {
+    (operator) => {
       if (operator !== "=") {
         const n = maybeResult ? maybeResult : Number(removeEndWithDot(input))
         if (maybeResult) {
@@ -82,7 +74,7 @@ export const Calculator: React.VFC = () => {
     [input, maybeResult]
   )
 
-  const onOtherClick = useCallback<OnOtherClick>(text => {
+  const onOtherClick = useCallback<OnOtherClick>((text) => {
     setMaybeResult(undefined)
     switch (text) {
       case "AC": {
@@ -98,7 +90,7 @@ export const Calculator: React.VFC = () => {
         return
       }
       case "+/-": {
-        setInput(_it => {
+        setInput((_it) => {
           const it = removeEndWithDot(_it)
           if (it === "0") return it
           return togglePlusMinus(it)
@@ -106,14 +98,14 @@ export const Calculator: React.VFC = () => {
         return
       }
       case "%": {
-        setInput(_it => {
+        setInput((_it) => {
           const it = removeEndWithDot(_it)
           return toDivide100(it)
         })
         return
       }
       case ".": {
-        setInput(it => {
+        setInput((it) => {
           if (it.includes(".")) return it
           return `${it}.`
         })
@@ -125,7 +117,7 @@ export const Calculator: React.VFC = () => {
   }, [])
 
   const onNumberClick = useCallback<OnNumberClick>(
-    numberText => {
+    (numberText) => {
       if (maybeResult) {
         setMaybeResult(undefined)
       }
@@ -134,7 +126,7 @@ export const Calculator: React.VFC = () => {
         setInput(numberText)
         return
       }
-      setInput(it => `${it}${numberText}`)
+      setInput((it) => `${it}${numberText}`)
     },
     [input, maybeResult]
   )
@@ -142,9 +134,18 @@ export const Calculator: React.VFC = () => {
   const calculatorButtonsProps = { onOperatorClick, onOtherClick, onNumberClick }
 
   return (
-    <Container>
+    <Box
+      w="320px"
+      borderWidth="thin"
+      borderStyle="solid"
+      borderColor="black"
+      borderRadius="base"
+      shadow="lg"
+      overflow="hidden"
+      userSelect="none"
+    >
       <CalculatorDisplay operatorText={maybeOperator} text={displayText} />
       <CalculatorButtons {...calculatorButtonsProps} />
-    </Container>
+    </Box>
   )
 }

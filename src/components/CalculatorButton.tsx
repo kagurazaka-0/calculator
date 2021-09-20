@@ -1,9 +1,9 @@
 import { Button, ButtonProps } from "@chakra-ui/react"
 import React from "react"
 
-type ChakraProps = Pick<ButtonProps, "color" | "fontSize" | "bgColor">
+// type ChakraProps = ButtonProps // Pick<ButtonProps, "color" | "fontSize" | "bgColor">
 // NOTE: 以下のようにやるとChakraのpropsを全て引き継げるが、storybook(react-docgen-typescript)がクラッシュする...
-// type ChakraProps = Omit<ButtonProps, "onClick" | "w" | "h" | "border">
+type ChakraProps = Omit<ButtonProps, "onClick">
 
 interface CalculatorButtonProps<Word extends string> extends ChakraProps {
   text: Word
